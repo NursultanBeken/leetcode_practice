@@ -42,6 +42,35 @@ Count the number of times a substring appear in a string
 def countSubstr(str, sub):
     return str.count(sub)
 
+
+#import string
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        result_list=[]
+        for c in "!?',;.":
+            paragraph = paragraph.replace(c, " ")  
+        words=paragraph.lower().split()
+        #words = [x.strip(',') for x in paragraph.lower().split()]  
+        for word in words:
+            if word not in banned:
+                result_list.append(word)
+        return max(set(result_list), key = result_list.count) 
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = len(s)
+        my_set = {}
+        start,max_length = 0,0
+
+        for i in range(n):
+            if (s[i] in my_set) and (start <= my_set[s[i]]):
+                start =  my_set[s[i]] + 1
+            else:
+                max_length = max(max_length, i - start +1)
+            my_set[s[i]] = i
+        return  max_length   
+
+
 if __name__=="__main__":
     print(findCommon("This is document  tick  tick one one", "I get doc one is"))
     result = UncommonWords("Firstly this is the first string", "Next is the second string")
