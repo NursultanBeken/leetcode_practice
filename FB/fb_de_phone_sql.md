@@ -32,7 +32,7 @@ Everything I found in glasdoor
 ```
 select 
 count( case 
-        when is_low_fat_flg ='Y' and is_recyclable_flg ='Y' then product id 
+        when is_low_fat_flg ='1' and is_recyclable_flg ='1' then product id 
         end) * 100
 / count(product_id) as total
 from products;
@@ -44,10 +44,11 @@ from products;
 -- the grocery chain had spent on its promotional campaigns?
 
 ```
-select promotion_name
+select promotion_name, sum(cost) as total_cost
 from promotions
-where media_type='single-channel'
-order by cost desc
+where media_type not like '%,%'
+group by promotion_name
+order by total_cost desc
 limit 5
 ```
 
@@ -57,19 +58,12 @@ limit 5
 -- the very first day or the very last day of a promotion campaign.
 
 ```
-select count(*) as total_num_of_transactions  from sales ;
---
-select count(*) as num_of_transactions_in_promotion_date
+select 
+1.00*count(case 
+        when ransaction_date = start_date or transaction_date = end_date then 1 
+        end) * 100/count(*) as num_of_transactions_in_promotion_date
 from sales
-join promotions on promotions.promotion_id = sales.promotion_id
-where transaction_date = start_date or transaction_date = end_date;
-
-select
-(
-
-) *100 / count(*) as 
-from sales
-join promotions on promotions.promotion_id = sales.promotion_id
+join promotions on promotions.promotion_id = sales.promotion_id;
 ```
 
 ```
