@@ -9,10 +9,20 @@
 # - output array: [1,1,2,3,3,3,5,5]
 # [1,None,1,2,None} --> [1,1,1,2,2]
 
+
 def fillBlanks(input_list):
-    for index, value in enumerate(input_list):
-        if not value:
-            input_list[index] = input_list[index-1]
+
+    if input_list is None:
+        return None
+    elif len(input_list) == 0:
+        return []    
+    else:
+        if input_list[0] is None:
+            input_list[0] = None
+
+        for index in range(1, len(input_list)):
+            if input_list[index] is None:
+                input_list[index] = input_list[index-1]
     return input_list
 
 
@@ -24,6 +34,8 @@ def fillBlanks(input_list):
 # - output : 4
 
 def charOccurs(s, ch):
+    if len(s)==0:
+        return 0
     cnt = 0
     for item in s:
         if item == ch:
