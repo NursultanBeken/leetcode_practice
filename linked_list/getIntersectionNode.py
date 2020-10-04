@@ -25,3 +25,12 @@ class Solution:
 # On the second traversal, they either hit or miss. 
 # if they meet, pa or pb would be the node we are looking for, 
 # if they didn't meet, they will hit the end at the same iteration, pa == pb == None, return either one of them is the same,None
+
+
+Traverse list A and store the address / reference to each node in a hash set. Then check every node bi in list B: if bi appears in the hash set, then bi is the intersection node.
+
+Complexity Analysis
+
+Time complexity : O(m+n)O(m+n).
+
+Space complexity : O(m)O(m) or O(n)O(n).
