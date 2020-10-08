@@ -44,7 +44,7 @@ def countSubstr(str, sub):
 
 if __name__=="__main__":
     print(findCommon("This is document  tick  tick one one", "I get doc one is"))
-    result = UncommonWords("This", "I this")
+    result = UncommonWords("Firstly this is the first string", "Next is the second string")
     print(f'UncommonWords = {result}')
 
     print(countDitinct('hehe hehe lolo jam rain rainbow Rain'))
